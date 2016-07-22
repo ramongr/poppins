@@ -60,7 +60,14 @@ function checkboxHierarchy(elem){
 
 poppinsJS = 
   init: ->
-     
+    $(document).on '[type=checkbox]', 'click', (evt)->
+      evt.preventPropagation()
+      console.log($(this))
+
+  default_options:
+    rootId: $('[aria-root=true]').attr('id')
+    
+
 $.fn.poppins = (args) ->
   if poppinsJS[args] #Calling a function
     poppinsJS[args].apply this, Array::slice.call(arguments, 1)
