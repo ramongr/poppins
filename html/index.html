@@ -1,45 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Poppins - Hierarchy to the checkbox!</title>
+    <title>Poppins - Hierarchy to the max!</title>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   </head>
   <body>
     <h2>Example using two levels</h2>
     <div class="poppins-container">
-      <!-- Pontos Técnicos -->
-      <div class="checkbox-list">
-        <div class="checkbox">
-          <label>
-            <input id="1" aria-root="true" aria-parent="true" type="checkbox" value="node1"> Node 1
-          </label>
-        </div>
-        <div id="sub-checkbox-list-1">
-          <!-- Sub opções dos pontos técnicos -->
-          <div class="checkbox">
-            <label class="sub-checkbox">
-              <input id="11" data-id="1" type="checkbox" aria-child="true" aria-parent="true" value="subnode1"> Sub Node 1 (Child of Node 1)
-            </label>
-          </div>
-          <div id="sub-checkbox-list-11">
-            <div class="checkbox">
-              <label class="sub-checkbox-2">
-                <input id="111" data-id="11" aria-child="true" type="checkbox" value="subnode11"> Sub Node 11 (Child of Sub Node 1)
-              </label>
-            </div>
-            <div class="checkbox">
-              <label class="sub-checkbox-2">
-                <input data-id="11" id="112" aria-child="true" type="checkbox" value="subnode12"> Sub Node 12 (Child of Sub Node 1)
-              </label>
-            </div>
-            <div class="checkbox">
-              <label class="sub-checkbox-2">
-                <input data-id="11" id="113" aria-child="true" type="checkbox" value="subnode13"> Sub Node 13 (Child of Sub Node 1)
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div id="lvl1" data-root="true" data-parent="true"></div>
+      <div id="lvl2" data-child="true" data-id="lvl1"></div>
     </div>
   </body>
 </html>
