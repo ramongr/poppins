@@ -1,3 +1,3 @@
 $(document).ready(function(){
-  var poppins = Poppins.init();
+  Poppins.init();
 });

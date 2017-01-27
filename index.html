@@ -8,6 +8,17 @@
   </head>
   <body>
     <h2>Example using two levels</h2>
-    <div data-poppins=''></div>
+    <div data-poppins='true'>
+      <ul>
+        <li>
+          <input type="checkbox" data-poppins-root="true" data-poppins-id="selection-1">
+          <ul>
+            <li>
+              <input type="checkbox" data-poppins-parent="selection-1" data-poppins-id="selection-1-1">
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </body>
 </html>
