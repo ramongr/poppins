@@ -9,8 +9,8 @@ Poppins = {
       4. Add eventlisteners
     */
 
-    this.rootSelector = $('div[data-poppins=true]')[0];
-    this.checkBoxes = $(this.rootSelector).find('[data-poppins-id]');
+    this.rootSelector = document.querySelector('[data-poppins=true]');
+    this.checkBoxes = this.rootSelector.querySelectorAll('[data-poppins-id]');
     if(this.integrityCheck())
       this.clickListeners();
   },
@@ -26,18 +26,23 @@ Poppins = {
     //   });
     // });
     for(var i = 0; i < this.checkBoxes.length; i++){
-      if($(this.checkBoxes[i]).attr('data-poppins-root') === 'true'){
-        $(this.checkBoxes[i]).on('click', function(event){
+      if(this.checkBoxes[i].getAttribute('data-poppins-root') === 'true'){
+        this.checkBoxes[i].addEventListener('click', function(){
           handleRootClick(event);
         });
       }
     }
   },
   integrityCheck: function(){
-    return $(this.rootSelector).length == 1 && $(this.checkBoxes).length > 0;
+    return this.rootSelector.hasChildNodes() && this.checkBoxes.length > 0;
   },
 };
+
 function handleRootClick(event){
-  rootId = $(event.target).attr('data-poppins-id');
-  childrenArray = $(selector).find("[data-poppins-parent=" + rootId + "]");
+  rootId = event.target.getAttribute('data-poppins-id');
+  childrenArray = document.querySelectorAll("[data-poppins-parent=" + rootId + "]");
+
+  for(var i = 0; i < childrenArray.length; i++){
+    childrenArray[i].checked = event.target.checked;
+  }
 }
