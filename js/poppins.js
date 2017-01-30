@@ -20,26 +20,19 @@ Poppins = {
     Node checkboxes - Checkboxes that only have parents
   */
   clickListeners: function(){
-    // this.checkBoxes.each(function(index, check){
-    //   $(check).on('click', function(){
-    //     Poppins.handleRootClick();
-    //   });
-    // });
     for(var i = 0; i < this.checkBoxes.length; i++){
       if(this.checkBoxes[i].getAttribute('data-poppins-root') === 'true'){
-        this.checkBoxes[i].addEventListener('click', function(){
-          handleRootClick(event);
-        });
+        this.checkBoxes[i].addEventListener('click', handleRootClick, false);
       }
     }
   },
   integrityCheck: function(){
     return this.rootSelector.hasChildNodes() && this.checkBoxes.length > 0;
-  },
+  }
 };
 
-function handleRootClick(event){
-  rootId = event.target.getAttribute('data-poppins-id');
+function handleRootClick(){
+  rootId = this.getAttribute('data-poppins-id');
   childrenArray = document.querySelectorAll("[data-poppins-parent=" + rootId + "]");
 
   for(var i = 0; i < childrenArray.length; i++){
