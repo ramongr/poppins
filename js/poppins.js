@@ -47,6 +47,7 @@ function handleClick(){
       checked: undefined,
       indeterminate: undefined
     };
+
   if(parentId !== null){
     checkedStatus = brotherCheckboxClick(parentId, this.checked, this.indeterminate);
     parentCheckboxClick(parentId, checkedStatus.checked, checkedStatus.indeterminate);
@@ -57,7 +58,7 @@ function brotherCheckboxClick(parentId, checked, indeterminate){
   var brothers = document.querySelectorAll("[data-poppins-parent=" + parentId + "]"),
     sameState = 0;
     for(var i = 0; i < brothers.length; i++){
-      if(brothers[i].checked === checked || brothers[i].indeterminate === indeterminate)
+      if(brothers[i].checked === checked && brothers[i].indeterminate === indeterminate)
         sameState++;
   }
   return setCheckedStatus(sameState, brothers.length, checked, indeterminate);
@@ -80,16 +81,11 @@ function parentCheckboxClick(parentId, checked, indeterminate){
   upperParentId = parent.getAttribute('data-poppins-parent');
 
   if(upperParentId !== null){
-    upperParent = document.querySelector("[data-poppins-id=" + upperParentId + "]");
-    parentBrothers = document.querySelectorAll("[data-poppins-parent=" + upperParentId + "]");
-    console.log(parentBrothers.length);
-    for(var i = 0; i < parentBrothers.length; i++){
-      if(parentBrothers[i].checked === checked || parentBrothers[i].indeterminate === indeterminate)
-        sameState++;
-    }
-    checkedStatus = setCheckedStatus(sameState, parentBrothers.length, checkedStatus.checked, checkedStatus.indeterminate);
+    checkedStatus = brotherCheckboxClick(upperParentId, parent.checked, parent.indeterminate);
     parentCheckboxClick(upperParentId, checkedStatus.checked, checkedStatus.indeterminate);
   }
+
+  return true;
 }
 
 function setCheckedStatus(sameState, length, checked, indeterminate){
