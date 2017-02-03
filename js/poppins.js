@@ -51,6 +51,8 @@ function handleClick(){
   if(parentId !== null){
     checkedStatus = brotherCheckboxClick(parentId, this.checked, this.indeterminate);
     parentCheckboxClick(parentId, checkedStatus.checked, checkedStatus.indeterminate);
+  }else{
+    childClick(this.getAttribute('data-poppins-id'), this.checked, this.indeterminate);
   }
 }
 
@@ -62,6 +64,19 @@ function brotherCheckboxClick(parentId, checked, indeterminate){
         sameState++;
   }
   return setCheckedStatus(sameState, brothers.length, checked, indeterminate);
+}
+
+function childClick(parentId, checked, indeterminate){
+  var children = document.querySelectorAll("[data-poppins-parent=" + parentId + "]");
+
+  for(var i = 0; i < children.length; i++){
+    children[i].checked = checked;
+    children[i].indeterminate = indeterminate;
+    childId = children[i].getAttribute('data-poppins-id');
+    childClick(childId, checked, indeterminate);
+  }
+
+  return true;
 }
 
 /*
